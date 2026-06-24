@@ -1,0 +1,32 @@
+---
+import { ClientRouter } from "astro:transitions";
+
+import "../styles/main.css";
+
+import Header from "./Header.astro";
+("../components/Header.astro");
+
+import Footer from "./Footer.astro";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>AMITO CLOUD</title>
+
+    <ClientRouter />
+  </head>
+  <body>
+    <Header transition:persist transition:animate="none" />
+    <main>
+      <div class="page-content-container">
+        <slot />
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,40 @@
+.touchable-cloud {
+  display: flex;
+  background-color: white;
+  width: max-content;
+  height: max-content;
+  padding-inline: 1rem;
+  padding-block: 0.8rem;
+  border-radius: 1000px 1000px 0px 1000px;
+  position: relative;
+  isolation: isolate;
+
+  transition: background-color 0.3s ease;
+}
+
+.touchable-cloud h1 {
+  background-color: transparent;
+}
+
+.touchable-cloud-extrabubble {
+  display: block;
+  background-color: white;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 0px 1000px 1000px 1000px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(20%, 20%);
+  z-index: -1;
+
+  transition: background-color 0.3s ease;
+}
+
+.touchable-cloud:hover div {
+  background-color: rgb(221, 221, 221);
+}
+
+.touchable-cloud:hover {
+  background-color: rgb(221, 221, 221);
+}
