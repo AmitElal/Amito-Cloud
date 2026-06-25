@@ -6,11 +6,14 @@ body {
   margin: 0;
   padding: 0;
   min-height: 20rem;
+  position: relative;
+
+  z-index: -21;
 }
 
 main {
   padding: 2rem;
-  margin-top: 12rem;
+  /* margin-top: 12rem; */
 }
 
 .page-content-container {
