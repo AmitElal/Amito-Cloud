@@ -14,7 +14,7 @@ body {
 main {
   height: max-content;
   padding: 0rem 2rem 2rem 2rem;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .page-content-container {
