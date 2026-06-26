@@ -1,5 +1,5 @@
 .footer-server {
-  height: 20rem;
+  min-height: 20rem; /* Changed to min-height so it naturally grows if items wrap onto more rows */
   width: 100%;
   margin-top: auto;
   position: relative;

@@ -1,26 +1,30 @@
 .server-blocks-container {
-  display: flex;
+  display: grid;
+  /* The Secret Sauce: Forces items to fill vertically down first */
+  grid-auto-flow: column;
+
+  /* Desktop State: Exactly 3 rows. 12 items / 3 rows = 4 columns natively */
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  /* Auto-generate columns based on row constraints */
+  grid-template-columns: repeat(4, 1fr);
+
   background-color: rgb(84, 84, 84);
   width: 100%;
   padding: 1rem;
   gap: 1rem;
-  block-size: 100%;
-  flex-wrap: wrap;
   box-sizing: border-box;
 }
 
 .block {
   min-height: 10px;
-  align-content: flex-end;
-  width: calc(25% - 0.75rem);
-
   background-color: rgb(60, 60, 60);
   box-sizing: border-box;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 2rem;
+  justify-content: flex-start;
+  padding: 1rem 2rem;
+  width: 100%; /* Grid handles widths now, so we drop the calc expressions */
 }
 
 .green-dot {
@@ -28,37 +32,63 @@
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 1000rem;
+  flex-shrink: 0;
 
   animation: blink 3s infinite ease-in-out;
+  margin-right: 1rem;
 }
 
 .info-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+  min-width: 0;
+  flex-wrap: nowrap;
 }
 
 .block h4 {
   color: greenyellow;
-  right: 0;
-
-  margin-right: 1rem;
+  margin: 0;
+  margin-right: 0.5rem;
+  white-space: nowrap;
 }
 
 @keyframes blink {
   0%,
   100% {
-    opacity: 1; /* Fully visible at the start and end */
+    opacity: 1;
   }
   50% {
-    opacity: 0; /* Disappears exactly halfway through */
+    opacity: 0;
   }
 }
 
 svg {
   position: relative;
   stroke: greenyellow;
-  padding-right: 2rem;
-  right: 0;
   width: 1rem;
   height: 1rem;
+  flex-shrink: 0;
+}
+
+/* =========================================================================
+   Responsive Shifts (Altering Row Caps to force Column Flow Re-ordering)
+   ========================================================================= */
+
+@media (max-width: 1200px) {
+  .server-blocks-container {
+    /* Tablet State: Explicitly shifts structure to 6 rows, giving you exactly 2 columns */
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .server-blocks-container {
+    /* Mobile State: Flattens completely to a single vertical column */
+    grid-template-rows: none;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row; /* Fallback to standard row flow on single track mobile */
+  }
 }
