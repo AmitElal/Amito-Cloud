@@ -27,7 +27,7 @@ header {
   float: inline-end;
 
   top: 5.25rem;
-  bottom: 0;
+  bottom: 20rem;
   right: 1.4rem;
 
   width: 2px;
@@ -52,7 +52,7 @@ header {
 }
 .pipe-image-container {
   position: absolute;
-  display: flex;
+  /* display: flex; */
   direction: rtl;
   padding-right: 0.9rem;
   left: 0;
@@ -64,7 +64,7 @@ header {
 .pipe-image-container img {
   position: absolute;
   height: 3.5rem;
-  align-items: left;
+  /* align-items: left; */
 }
 
 .header-buttons-container {

@@ -12,7 +12,10 @@ body {
 }
 
 main {
-  padding: 2rem;
+  height: max-content;
+  padding: 0rem 2rem 2rem 2rem;
+  margin
+  background-color: red;
   /* margin-top: 12rem; */
 }
 
@@ -35,20 +38,11 @@ main {
   -webkit-tap-highlight-color: transparent;
 }
 
-h1 {
-  font-weight: 100;
-  font-size: 12pt;
+img {
+  max-width: 30rem;
 }
 
-p {
-  font-size: 12pt;
-}
+.image-rounded-standard {
+  border-radius: 10rem;
 
-a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  font: inherit;
-
-  -webkit-tap-highlight-color: transparent;
 }

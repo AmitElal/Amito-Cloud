@@ -1,0 +1,64 @@
+.server-blocks-container {
+  display: flex;
+  background-color: rgb(84, 84, 84);
+  width: 100%;
+  padding: 1rem;
+  gap: 1rem;
+  block-size: 100%;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.block {
+  min-height: 10px;
+  align-content: flex-end;
+  width: calc(25% - 0.75rem);
+
+  background-color: rgb(60, 60, 60);
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2rem;
+}
+
+.green-dot {
+  background-color: greenyellow;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 1000rem;
+
+  animation: blink 3s infinite ease-in-out;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+}
+
+.block h4 {
+  color: greenyellow;
+  right: 0;
+
+  margin-right: 1rem;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1; /* Fully visible at the start and end */
+  }
+  50% {
+    opacity: 0; /* Disappears exactly halfway through */
+  }
+}
+
+svg {
+  position: relative;
+  stroke: greenyellow;
+  padding-right: 2rem;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+}
