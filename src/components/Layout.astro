@@ -5,8 +5,6 @@ import "../styles/main.css";
 import "../styles/texts.css";
 
 import Header from "./Header.astro";
-("../components/Header.astro");
-
 import Footer from "./Footer.astro";
 ---
 
@@ -31,3 +29,24 @@ import Footer from "./Footer.astro";
     <Footer />
   </body>
 </html>
+
+<style>
+  .page-content-container {
+    /* Desktop baseline padding layout */
+    padding-inline: 4rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* =========================================================================
+     Responsive Mobile Gutter Reduction
+     ========================================================================= */
+  @media (max-width: 768px) {
+    .page-content-container {
+      /* Scales padding down significantly on mobile to maximize viewport room */
+      padding-inline: 1rem !important;
+    }
+  }
+</style>
