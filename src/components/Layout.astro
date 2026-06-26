@@ -17,7 +17,7 @@ import Footer from "./Footer.astro";
     <meta name="generator" content={Astro.generator} />
     <title>AMITO CLOUD</title>
 
-    <ClientRouter />
+    <!-- <ClientRouter /> -->
   </head>
   <body>
     <Header transition:persist transition:animate="none" />
@@ -39,10 +39,6 @@ import Footer from "./Footer.astro";
     margin: 0 auto;
     box-sizing: border-box;
   }
-
-  /* =========================================================================
-     Responsive Mobile Gutter Reduction
-     ========================================================================= */
   @media (max-width: 768px) {
     .page-content-container {
       /* Scales padding down significantly on mobile to maximize viewport room */
