@@ -1,0 +1,80 @@
+---
+import "../components/Form.css";
+
+interface InputField {
+  label: string;
+  name: string;
+  type: "text" | "email" | "textarea" | "password";
+  placeholder?: string;
+  required?: boolean;
+  rows?: number;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  formAction?: string;
+  accessKey?: string; // Web3Forms token
+  inputs: InputField[];
+  submitText?: string;
+  formId?: string;
+}
+
+const {
+  title,
+  description,
+  formAction = "https://api.web3forms.com/submit",
+  accessKey,
+  inputs,
+  submitText = "Submit",
+  formId,
+} = Astro.props;
+---
+
+<div class="form-page-container">
+  <div class="form-card">
+    <h2>{title}</h2>
+    <p>{description}</p>
+
+    <form action={formAction} method="POST" class="dynamic-form" id={formId}>
+      {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
+
+      {
+        inputs.map((field) => (
+          <div class="form-group">
+            <label for={field.name}>{field.label}</label>
+
+            {field.type === "textarea" ? (
+              <textarea
+                id={field.name}
+                name={field.name}
+                rows={field.rows || 4}
+                placeholder={field.placeholder}
+                required={field.required ?? true}
+              />
+            ) : (
+              <input
+                type={field.type}
+                id={field.name}
+                name={field.name}
+                placeholder={field.placeholder}
+                required={field.required ?? true}
+              />
+            )}
+          </div>
+        ))
+      }
+
+      <!-- Bot spam honeypot -->
+      {
+        accessKey && (
+          <input type="checkbox" name="botcheck" style="display: none;" />
+        )
+      }
+
+      <button type="submit" class="submit-btn">{submitText}</button>
+      <slot />
+      <!-- Allows you to pass extra error fields inside -->
+    </form>
+  </div>
+</div>

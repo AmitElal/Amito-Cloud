@@ -1,9 +1,32 @@
 ---
 import Layout from "../components/Layout.astro";
+import Form from "../components/Form.astro";
+import "../pages/contact.css";
+
+const contactFields = [
+  { label: "Name", name: "name", type: "text", placeholder: "Your name" },
+  {
+    label: "Email Address",
+    name: "email",
+    type: "email",
+    placeholder: "you@example.com",
+  },
+  {
+    label: "Message",
+    name: "message",
+    type: "textarea",
+    placeholder: "Type your message here...",
+    rows: 5,
+  },
+];
 ---
 
 <Layout>
-  <h1>Contact</h1>
-  <p>amitshalevelal@gmail.com</p>
-  <p>+972522248321</p>
+  <Form
+    title="Get in Touch"
+    description="Have a question or want to work together? Drop me a line."
+    accessKey="YOUR_ACCESS_KEY_HERE"
+    inputs={contactFields}
+    submitText="Send Message"
+  />
 </Layout>
