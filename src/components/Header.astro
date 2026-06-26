@@ -8,19 +8,66 @@ import "../components/Header.css";
   <a href="/" class="logo-container">
     <img src="/visuals/amito-cloud-icon.svg" alt="AMITO CLOUD Logo" />
   </a>
-  <div class="header-buttons-container">
+
+  <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">
+    <Button>
+      <div class="hamburger-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </Button>
+  </button>
+
+  {/* Changed from <div> to native <dialog> */}
+  <dialog id="navMenu" class="header-buttons-container">
     <a href="/contact"><Button>Contact</Button></a>
     <a href="/skills"><Button>Amito.Skillz</Button></a>
     <a href="/philosophies"><Button>Cloud.Vibes</Button></a>
     <a href="/visualart"><Button>Visual Art</Button></a>
-  </div>
-  <div class="horizontal-line"></div>
+  </dialog>
+
   <div class="vertical-line" style="right: 2rem; background-color: red"></div>
   <div class="vertical-line"></div>
+  <div class="horizontal-line"></div>
   <div class="horizontal-line" style="top: 6.25rem; background-color: red;">
   </div>
+
   <div class="pipe-image-container">
     <img src="/visuals/pipe-front.svg" />
     <img src="/visuals/pipe-back.svg" style="z-index: -2;" />
   </div>
 </header>
+
+<script>
+  const menuToggle = document.getElementById("menuToggle");
+  const navMenu = document.getElementById(
+    "navMenu",
+  ) as HTMLDialogElement | null;
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+
+    if (target.closest("#menuToggle")) {
+      const isOpen = menuToggle?.classList.contains("open");
+
+      if (isOpen) {
+        menuToggle?.classList.remove("open");
+        navMenu?.close();
+        document.documentElement.classList.remove("lock-scroll");
+      } else {
+        menuToggle?.classList.add("open");
+        navMenu?.showModal();
+        document.documentElement.classList.add("lock-scroll");
+      }
+    }
+  });
+
+  document.querySelectorAll(".header-buttons-container a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle?.classList.remove("open");
+      navMenu?.close();
+      document.documentElement.classList.remove("lock-scroll");
+    });
+  });
+</script>

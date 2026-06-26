@@ -2,16 +2,14 @@
 import "../components/PhotoStrip.css";
 ---
 
-<div class="slideshow-fullscreen-container">
+<photo-slider class="slideshow-fullscreen-container">
   <div class="slideshow-container">
     <div class="mySlides fade">
       <img src="../../visuals/Photography/IMG_0163.jpg" />
-      <!-- <div class="text">Caption Text</div> -->
     </div>
 
     <div class="mySlides fade">
       <img src="../../visuals/Photography/IMG_4808.jpg" />
-      <!-- <div class="text">Caption Two</div> -->
     </div>
 
     <div class="mySlides fade">
@@ -20,94 +18,99 @@ import "../components/PhotoStrip.css";
 
     <div class="mySlides fade">
       <img src="../../visuals/Photography/IMG_5885.jpg" />
-      <!-- <div class="text">Caption Four</div> -->
     </div>
 
     <a class="prev" id="prevSlide">&#10094;</a>
     <a class="next" id="nextSlide">&#10095;</a>
   </div>
-</div>
+</photo-slider>
 
 <script>
-  let slideIndex = 1;
+  class PhotoSlider extends HTMLElement {
+    connectedCallback() {
+      let slideIndex = 1;
+      const slides = this.getElementsByClassName(
+        "mySlides",
+      ) as HTMLCollectionOf<HTMLElement>;
+      const dots = this.getElementsByClassName(
+        "dot",
+      ) as HTMLCollectionOf<HTMLElement>;
 
-  const slides = document.getElementsByClassName(
-    "mySlides",
-  ) as HTMLCollectionOf<HTMLElement>;
-  const dots = document.getElementsByClassName(
-    "dot",
-  ) as HTMLCollectionOf<HTMLElement>;
+      if (slides.length === 0) return;
 
-  function showSlides(n: number) {
-    if (slides.length === 0) return;
+      const showSlides = (n: number) => {
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
 
-    if (n > slides.length) {
-      slideIndex = 1;
+        for (let i = 0; i < slides.length; i++) {
+          slides[i].className = slides[i].className
+            .replace(" active", "")
+            .replace(" prev-slide", "")
+            .replace(" next-slide", "");
+          slides[i].style.display = "none";
+        }
+
+        for (let i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        let currentIdx = slideIndex - 1;
+        let prevIdx = (currentIdx - 1 + slides.length) % slides.length;
+        let nextIdx = (currentIdx + 1) % slides.length;
+
+        slides[currentIdx].style.display = "block";
+        slides[currentIdx].className += " active";
+
+        slides[prevIdx].style.display = "block";
+        slides[prevIdx].className += " prev-slide";
+
+        slides[nextIdx].style.display = "block";
+        slides[nextIdx].className += " next-slide";
+
+        if (dots[currentIdx]) dots[currentIdx].className += " active";
+      };
+
+      // Show initial frames
+      showSlides(slideIndex);
+
+      this.querySelector("#prevSlide")?.addEventListener("click", () => {
+        showSlides((slideIndex -= 1));
+      });
+
+      this.querySelector("#nextSlide")?.addEventListener("click", () => {
+        showSlides((slideIndex += 1));
+      });
+
+      this.querySelectorAll(".dot").forEach((dot) => {
+        dot.addEventListener("click", (e) => {
+          const target = e.target as HTMLElement;
+          const slideNum = parseInt(
+            target.getAttribute("data-slide") || "1",
+            10,
+          );
+          showSlides((slideIndex = slideNum));
+        });
+      });
+
+      this.querySelector(".slideshow-container")?.addEventListener(
+        "click",
+        (e) => {
+          const clickedSlide = (e.target as HTMLElement).closest(".mySlides");
+          if (!clickedSlide) return;
+
+          if (clickedSlide.classList.contains("prev-slide")) {
+            showSlides((slideIndex -= 1));
+          } else if (clickedSlide.classList.contains("next-slide")) {
+            showSlides((slideIndex += 1));
+          }
+        },
+      );
     }
-    if (n < 1) {
-      slideIndex = slides.length;
-    }
-
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].className = slides[i].className
-        .replace(" active", "")
-        .replace(" prev-slide", "")
-        .replace(" next-slide", "");
-      slides[i].style.display = "none";
-    }
-
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    let currentIdx = slideIndex - 1;
-    let prevIdx = (currentIdx - 1 + slides.length) % slides.length;
-    let nextIdx = (currentIdx + 1) % slides.length;
-
-    slides[currentIdx].style.display = "block";
-    slides[currentIdx].className += " active";
-
-    slides[prevIdx].style.display = "block";
-    slides[prevIdx].className += " prev-slide";
-
-    slides[nextIdx].style.display = "block";
-    slides[nextIdx].className += " next-slide";
-
-    if (dots[currentIdx]) dots[currentIdx].className += " active";
   }
 
-  showSlides(slideIndex);
-
-  // Existing button controls
-  document.getElementById("prevSlide")?.addEventListener("click", () => {
-    showSlides((slideIndex -= 1));
-  });
-
-  document.getElementById("nextSlide")?.addEventListener("click", () => {
-    showSlides((slideIndex += 1));
-  });
-
-  document.querySelectorAll(".dot").forEach((dot) => {
-    dot.addEventListener("click", (e) => {
-      const target = e.target as HTMLElement;
-      const slideNum = parseInt(target.getAttribute("data-slide") || "1", 10);
-      showSlides((slideIndex = slideNum));
-    });
-  });
-
-  // --- NEW CODE: Click to slide handlers ---
-  // Using event delegation on the slideshow container makes tracking dynamic classes easy
-  document
-    .querySelector(".slideshow-container")
-    ?.addEventListener("click", (e) => {
-      const clickedSlide = (e.target as HTMLElement).closest(".mySlides");
-
-      if (!clickedSlide) return;
-
-      if (clickedSlide.classList.contains("prev-slide")) {
-        showSlides((slideIndex -= 1));
-      } else if (clickedSlide.classList.contains("next-slide")) {
-        showSlides((slideIndex += 1));
-      }
-    });
+  customElements.define("photo-slider", PhotoSlider);
 </script>
