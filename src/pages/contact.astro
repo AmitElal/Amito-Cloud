@@ -4,17 +4,22 @@ import Form from "../components/Form.astro";
 import "../pages/contact.css";
 
 const contactFields = [
-  { label: "Name", name: "name", type: "text", placeholder: "Your name" },
+  {
+    label: "Name",
+    name: "name",
+    type: "text" as const,
+    placeholder: "Your name",
+  },
   {
     label: "Email Address",
     name: "email",
-    type: "email",
+    type: "email" as const,
     placeholder: "you@example.com",
   },
   {
     label: "Message",
     name: "message",
-    type: "textarea",
+    type: "textarea" as const,
     placeholder: "Type your message here...",
     rows: 5,
   },
@@ -25,7 +30,7 @@ const contactFields = [
   <Form
     title="Get in Touch"
     description="Have a question or want to work together? Drop me a line."
-    accessKey="YOUR_ACCESS_KEY_HERE"
+    accessKey="f030bd9a-0274-4cdf-802c-42136885f5b5"
     inputs={contactFields}
     submitText="Send Message"
   />
