@@ -67,6 +67,11 @@ import pipeBack from "../assets/pipe-back.svg";
     }
   });
 
+  navMenu?.addEventListener("close", () => {
+    menuToggle?.classList.remove("open");
+    document.documentElement.classList.remove("lock-scroll");
+  });
+
   document.querySelectorAll(".header-buttons-container a").forEach((link) => {
     link.addEventListener("click", () => {
       menuToggle?.classList.remove("open");

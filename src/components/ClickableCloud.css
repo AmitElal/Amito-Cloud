@@ -31,10 +31,12 @@
   transition: background-color 0.3s ease;
 }
 
-.touchable-cloud:hover div {
-  background-color: rgb(221, 221, 221);
-}
+@media (hover: hover) {
+  .touchable-cloud:hover div {
+    background-color: rgb(221, 221, 221);
+  }
 
-.touchable-cloud:hover {
-  background-color: rgb(221, 221, 221);
+  .touchable-cloud:hover {
+    background-color: rgb(221, 221, 221);
+  }
 }
