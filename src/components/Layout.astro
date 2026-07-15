@@ -17,20 +17,63 @@ import Footer from "./Footer.astro";
     <meta name="generator" content={Astro.generator} />
     <title>AMITO CLOUD</title>
 
-    <!-- <ClientRouter /> -->
+    <ClientRouter />
   </head>
   <body>
+    <div id="page-loading-overlay" transition:animate="none"></div>
     <Header transition:persist transition:animate="none" />
     <main>
       <div class="page-content-container">
         <slot />
       </div>
     </main>
-    <Footer />
+    <Footer transition:persist />
   </body>
 </html>
 
+<script>
+  function waitForHeaderImages() {
+    const overlay = document.getElementById("page-loading-overlay");
+    const headerImages = document.querySelectorAll("header img");
+
+    if (!overlay) return;
+
+    if (headerImages.length === 0) {
+      overlay.style.display = "none";
+      return;
+    }
+
+    overlay.style.display = "block";
+
+    let remaining = headerImages.length;
+    const onImageSettled = () => {
+      remaining -= 1;
+      if (remaining <= 0) {
+        overlay.style.display = "none";
+      }
+    };
+
+    headerImages.forEach((img) => {
+      if ((img as HTMLImageElement).complete) {
+        onImageSettled();
+      } else {
+        img.addEventListener("load", onImageSettled, { once: true });
+        img.addEventListener("error", onImageSettled, { once: true });
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", waitForHeaderImages);
+</script>
+
 <style>
+  #page-loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: #b7edff;
+  }
+
   .page-content-container {
     /* Desktop baseline padding layout */
     padding-inline: 4rem;
