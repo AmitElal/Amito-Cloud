@@ -19,7 +19,7 @@ header {
   flex-shrink: 0;
 }
 
-.logo-container img {
+.logo-container svg {
   height: 10rem;
   width: auto;
   -webkit-backdrop-filter: 30px;
@@ -56,9 +56,10 @@ header {
   align-items: left;
 }
 
-.pipe-image-container img {
+.pipe-image-container svg {
   position: absolute;
   height: 3.5rem;
+  width: auto;
 }
 
 .header-buttons-container {

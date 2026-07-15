@@ -2,6 +2,8 @@
 
 Explain every command and every change before or alongside making it — a short, plain-language description of what it does and why. Do this for every step, including ones that seem obvious (e.g. `ls`, `curl`), not just the final summary.
 
+Never add comments in code. Explain reasoning in chat instead.
+
 ## Development
 
 When starting the dev server, use background mode:
