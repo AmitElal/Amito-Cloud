@@ -1,23 +1,30 @@
 ---
+import { Image } from "astro:assets";
+
 import "../components/PhotoStrip.css";
+
+import photo0163 from "../assets/Photography/IMG_0163.jpg";
+import photo4808 from "../assets/Photography/IMG_4808.jpg";
+import photo5613 from "../assets/Photography/IMG_5613.jpg";
+import photo5885 from "../assets/Photography/IMG_5885.jpg";
 ---
 
 <photo-slider class="slideshow-fullscreen-container">
   <div class="slideshow-container">
     <div class="mySlides fade">
-      <img src="/Photography/IMG_0163.jpg" />
+      <Image src={photo0163} alt="" />
     </div>
 
     <div class="mySlides fade">
-      <img src="/Photography/IMG_4808.jpg" />
+      <Image src={photo4808} alt="" />
     </div>
 
     <div class="mySlides fade">
-      <img src="/Photography/IMG_5613.jpg" />
+      <Image src={photo5613} alt="" />
     </div>
 
     <div class="mySlides fade">
-      <img src="/Photography/IMG_5885.jpg" />
+      <Image src={photo5885} alt="" />
     </div>
 
     <a class="prev" id="prevSlide">&#10094;</a>

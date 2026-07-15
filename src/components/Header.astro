@@ -2,11 +2,15 @@
 import Button from "../components/Button.astro";
 
 import "../components/Header.css";
+
+import amitoCloudIcon from "../assets/amito-cloud-icon.svg";
+import pipeFront from "../assets/pipe-front.svg";
+import pipeBack from "../assets/pipe-back.svg";
 ---
 
 <header transition:persist>
   <a href="/" class="logo-container">
-    <img src="/amito-cloud-icon.svg" alt="AMITO CLOUD Logo" />
+    <img src={amitoCloudIcon.src} alt="AMITO CLOUD Logo" />
   </a>
 
   <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation">
@@ -34,8 +38,8 @@ import "../components/Header.css";
   </div>
 
   <div class="pipe-image-container">
-    <img src="/pipe-front.svg" />
-    <img src="/pipe-back.svg" style="z-index: -2;" />
+    <img src={pipeFront.src} />
+    <img src={pipeBack.src} style="z-index: -2;" />
   </div>
 </header>
 

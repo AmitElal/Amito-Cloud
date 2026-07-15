@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../components/Layout.astro";
+import templePhoto from "../assets/amit-in-japan-clounds-temple.jpg";
 ---
 
 <Layout>
@@ -15,9 +17,5 @@ import Layout from "../components/Layout.astro";
   <p>This Is My Website That Will Tell You About Me</p> -->
 
   <h1>This Is My Website That Will Tell You About Me</h1>
-  <img
-    class="image-rounded-standard"
-    src="../../visuals/amit-in-japan-clounds-temple.jpg"
-    alt=""
-  />
+  <Image class="image-rounded-standard" src={templePhoto} alt="" />
 </Layout>

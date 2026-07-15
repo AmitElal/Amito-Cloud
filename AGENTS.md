@@ -1,3 +1,7 @@
+## Working with Claude
+
+Explain every command and every change before or alongside making it — a short, plain-language description of what it does and why. Do this for every step, including ones that seem obvious (e.g. `ls`, `curl`), not just the final summary.
+
 ## Development
 
 When starting the dev server, use background mode:
@@ -20,3 +24,7 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+
+
+
