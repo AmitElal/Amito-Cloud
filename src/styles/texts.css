@@ -1,8 +1,18 @@
+h1,
+h2,
+h3,
+h4,
+p,
+a {
+  letter-spacing: -0.05em;
+  word-spacing: 0.1em;
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   font-weight: 1000;
   font-size: 45pt;
-  letter-spacing: -0.05em;
-  word-spacing: 0.1em;
 
   line-height: 1em;
 

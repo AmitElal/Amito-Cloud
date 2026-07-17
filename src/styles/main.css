@@ -20,7 +20,7 @@ body {
 
 main {
   height: max-content;
-  padding: var(--space-large) 2rem 2rem 2rem;
+  padding: var(--space-large) 2rem var(--main-bottom-padding) 2rem;
 }
 
 .page-content-container {
@@ -34,6 +34,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: var(--space-large);
+  position: relative;
+  container-type: inline-size;
 }
 
 @media (max-width: 768px) {

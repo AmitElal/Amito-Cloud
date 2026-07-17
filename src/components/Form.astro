@@ -35,6 +35,7 @@ const {
   <div class="regular-paragraph">
     <h1>{title}</h1>
     <p>{description}</p>
+    <slot name="below-text" />
   </div>
   <div class="form-card">
     <form action={formAction} method="POST" class="dynamic-form" id={formId}>

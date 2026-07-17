@@ -1,6 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../components/Layout.astro";
 import Form from "../components/Form.astro";
+import amitoNoBackground from "../assets/amito-no-background.png";
+import "./contact.css";
 
 const contactFields = [
   {
@@ -32,5 +35,12 @@ const contactFields = [
     accessKey="f030bd9a-0274-4cdf-802c-42136885f5b5"
     inputs={contactFields}
     submitText="Send Message"
-  />
+  >
+    <Image
+      slot="below-text"
+      src={amitoNoBackground}
+      alt=""
+      class="contact-footer-image"
+    />
+  </Form>
 </Layout>

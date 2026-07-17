@@ -102,7 +102,11 @@
   box-shadow: 2px 2px 0px #000;
 }
 
-@media (max-width: 768px) {
+@container (max-width: 650px) {
+  .form-page-container {
+    gap: 0;
+  }
+
   .form-card {
     width: 100% !important;
     border-radius: 12px;
