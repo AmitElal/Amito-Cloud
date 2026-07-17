@@ -72,9 +72,11 @@ const {
           <input type="checkbox" name="botcheck" style="display: none;" />
         )
       }
+      <div class="submit-group">
+        <button type="submit" class="submit-btn">{submitText}</button>
+        <slot />
+      </div>
 
-      <button type="submit" class="submit-btn">{submitText}</button>
-      <slot />
       <!-- Allows you to pass extra error fields inside -->
     </form>
   </div>

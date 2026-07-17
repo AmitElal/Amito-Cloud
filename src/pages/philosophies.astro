@@ -16,18 +16,14 @@ const passwordFields = [
 <Layout>
   <div id="password-gate">
     <Form
-      title="Protected content"
+      title="Protected Content"
       description="Please enter the password to view this philosophy notebook layout."
       formAction="javascript:void(0);"
       inputs={passwordFields}
       submitText="Unlock Content"
       formId="gate-form"
     >
-      <p
-        id="error-message"
-        style="color: red; font-weight: bold; min-height: 1.2rem;"
-      >
-      </p>
+      <p id="error-message" style="color: red; font-weight: bold;"></p>
     </Form>
   </div>
 

@@ -1,6 +1,5 @@
 html,
 body {
-  background-color: #b7edff;
   color: #333333;
   font-family: sans-serif;
   margin: 0;
@@ -9,6 +8,14 @@ body {
   position: relative;
 
   z-index: -21;
+}
+
+html {
+  background-color: rgb(40, 38, 38);
+}
+
+body {
+  background-color: #b7edff;
 }
 
 main {

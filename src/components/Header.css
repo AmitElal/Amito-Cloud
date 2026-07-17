@@ -91,7 +91,7 @@ header {
   z-index: 210;
   /* Match the removal of the margin offset here to keep menu controls consistent */
   margin-bottom: 0;
-  margin-right: 5rem;
+  margin-right: var(--space-medium);
   margin-left: auto;
   padding-bottom: 2.2rem;
   outline: none;

@@ -29,6 +29,15 @@
   gap: var(--space-medium);
 }
 
+.submit-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-btn ~ *:not(:empty) {
+  margin-top: var(--space-medium);
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
