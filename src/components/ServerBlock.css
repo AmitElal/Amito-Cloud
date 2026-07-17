@@ -73,7 +73,7 @@
    Responsive Shifts (Altering Row Caps to force Column Flow Re-ordering)
    ========================================================================= */
 
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
   .server-blocks-container {
     /* Tablet State: Explicitly shifts structure to 6 rows, giving you exactly 2 columns */
     grid-template-rows: repeat(6, minmax(0, 1fr));
@@ -81,7 +81,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .server-blocks-container {
     /* Mobile State: Flattens completely to a single vertical column */
     grid-template-rows: none;

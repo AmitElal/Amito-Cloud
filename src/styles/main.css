@@ -29,6 +29,12 @@ main {
   gap: var(--space-large);
 }
 
+@media (max-width: 768px) {
+  .page-content-container {
+    padding-inline: var(--space-small);
+  }
+}
+
 .button-reset {
   background: transparent;
   border: none;
