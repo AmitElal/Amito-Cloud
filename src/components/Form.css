@@ -94,10 +94,6 @@
 }
 
 @media (max-width: 768px) {
-  .form-page-container {
-    padding-block: 1rem;
-  }
-
   .form-card {
     width: 100% !important;
     border-radius: 12px;
