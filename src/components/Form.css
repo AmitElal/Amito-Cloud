@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 2rem;
   box-sizing: border-box;
 }
 
@@ -13,31 +12,16 @@
   padding: 3rem;
   border-radius: 16px;
   max-width: 550px;
-  width: 100%; /* Spans full standard box dimensions on desktop */
+  width: 100%;
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
   box-sizing: border-box;
-}
-
-.form-card h2 {
-  font-size: 2.5rem;
-  color: #000;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-weight: 900;
-  letter-spacing: -0.05em;
-}
-
-.form-card p {
-  color: #555;
-  font-size: 1.05rem;
-  line-height: 1.5;
-  margin-bottom: 2.5rem;
 }
 
 .dynamic-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  margin-top: var(--space-medium);
 }
 
 .form-group {
@@ -104,21 +88,14 @@
   box-shadow: 2px 2px 0px #000;
 }
 
-/* =========================================================================
-     Responsive Layout Extensions (Forms Go Further To The Sides)
-     ========================================================================= */
 @media (max-width: 640px) {
   .form-page-container {
-    /* Removes extra outer padding on small devices so container expands completely */
     padding-inline: 0.25rem !important;
     padding-block: 1rem;
   }
 
   .form-card {
-    /* Extends card box margins all the way out to meet layout frame targets */
     width: 100% !important;
-    /* Reduces interior structural card padding slightly to give input fields maximum horizontal room */
-    padding: 2rem 1.25rem !important;
     border-radius: 12px;
   }
 

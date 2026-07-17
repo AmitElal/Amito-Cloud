@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions";
 
+import "../styles/variables.css";
 import "../styles/main.css";
 import "../styles/texts.css";
 
@@ -29,20 +30,3 @@ import Footer from "./Footer.astro";
     <Footer transition:persist />
   </body>
 </html>
-
-<style>
-  .page-content-container {
-    /* Desktop baseline padding layout */
-    padding-inline: 4rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-  @media (max-width: 768px) {
-    .page-content-container {
-      /* Scales padding down significantly on mobile to maximize viewport room */
-      padding-inline: 1rem !important;
-    }
-  }
-</style>

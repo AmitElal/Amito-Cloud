@@ -121,7 +121,7 @@ const passwordFields = [
     });
   }
 
-  setUpPasswordGate();
+  document.addEventListener("astro:page-load", setUpPasswordGate);
 </script>
 <style>
   #password-gate {

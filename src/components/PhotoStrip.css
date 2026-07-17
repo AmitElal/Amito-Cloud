@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 .slideshow-container {
@@ -37,7 +38,7 @@
 .mySlides img {
   width: auto !important;
   max-width: none !important;
-  height: 100vh !important;
+  height: calc(100vh - 4rem) !important;
   object-fit: contain !important;
   display: block;
   border-radius: 0;

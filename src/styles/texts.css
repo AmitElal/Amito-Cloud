@@ -1,6 +1,15 @@
 h1 {
   font-weight: 1000;
-  font-size: 30pt;
+  font-size: 45pt;
+  letter-spacing: -0.05em;
+  word-spacing: 0.1em;
+
+  line-height: 1em;
+
+  margin: 0;
+  padding: 0;
+
+  margin-bottom: var(--space-small);
 }
 
 h2 {
@@ -22,6 +31,13 @@ h4 {
 
 p {
   font-size: 12pt;
+  line-height: 1.3em;
+  margin: 0;
+  padding: 0;
+}
+
+.regular-paragraph {
+  margin-bottom: var(--space-medium);
 }
 
 a {

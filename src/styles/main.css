@@ -13,13 +13,20 @@ body {
 
 main {
   height: max-content;
-  padding: 0rem 2rem 2rem 2rem;
-  /* background-color: red; */
+  padding: var(--space-large) 2rem 2rem 2rem;
 }
 
 .page-content-container {
   margin-inline: 6rem;
   min-height: 30rem;
+  padding-inline: var(--space-large);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-large);
 }
 
 .button-reset {
@@ -48,7 +55,6 @@ img {
 .video-container {
   position: relative;
   width: 100%;
-  margin: 2rem auto; /* Centers the video block and adds spacing */
   aspect-ratio: 16 / 9;
   border-radius: 8px;
   overflow: hidden;

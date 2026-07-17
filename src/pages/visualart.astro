@@ -5,28 +5,37 @@ import PhotoStrip from "../components/PhotoStrip.astro";
 ---
 
 <Layout>
-  <h1>Photography</h1>
-  <p>
-    I got my first camera in December before my big around the world trip for an
-    unknown amount of time. I went and still going through a journey of
-    exploration of photography and photo treatment. Software editing, photo
-    printing, and zine designing.
-  </p>
-  <PhotoStrip />
-  <h1>YouTube</h1>
-  <p>
-    I do a lot of experiments on YouTube, I would say video is an art form I
-    feel very free and uncommitted to doing stuff a certain way. You will see a
-    pretty wide variety of content from a 9th birthday electronic song to a
-    hitchhiking in Japan vlog.
-  </p>
+  <div class="site-section">
+    <div class="regular-paragraph">
+      <h1>Photography</h1>
+      <p>
+        I got my first camera in December before my big around the world trip
+        for an unknown amount of time. I went and still going through a
+        journey of exploration of photography and photo treatment. Software
+        editing, photo printing, and zine designing.
+      </p>
+    </div>
+    <PhotoStrip />
+  </div>
 
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/3NQxxfJ3r6Q"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen></iframe>
+  <div class="site-section">
+    <div class="regular-paragraph">
+      <h1>YouTube</h1>
+      <p>
+        I do a lot of experiments on YouTube, I would say video is an art form
+        I feel very free and uncommitted to doing stuff a certain way. You
+        will see a pretty wide variety of content from a 9th birthday
+        electronic song to a hitchhiking in Japan vlog.
+      </p>
+    </div>
+
+    <div class="video-container">
+      <iframe
+        src="https://www.youtube.com/embed/3NQxxfJ3r6Q"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
   </div>
 </Layout>
