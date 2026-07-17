@@ -14,7 +14,6 @@ const passwordFields = [
 ---
 
 <Layout>
-  <!-- 1. Password Lock Gate Screen using the shared Form component style -->
   <div id="password-gate">
     <Form
       title="Protected content"
@@ -26,7 +25,7 @@ const passwordFields = [
     >
       <p
         id="error-message"
-        style="color: red; margin-top: 1rem; font-weight: bold; min-height: 1.2rem;"
+        style="color: red; font-weight: bold; min-height: 1.2rem;"
       >
       </p>
     </Form>
@@ -124,15 +123,6 @@ const passwordFields = [
   document.addEventListener("astro:page-load", setUpPasswordGate);
 </script>
 <style>
-  #password-gate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
   .lock-box {
     background-color: rgb(60, 60, 60);
     padding: 2.5rem;

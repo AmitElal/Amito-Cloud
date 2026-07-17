@@ -32,10 +32,11 @@ const {
 ---
 
 <div class="form-page-container">
-  <div class="form-card">
+  <div class="regular-paragraph">
     <h1>{title}</h1>
     <p>{description}</p>
-
+  </div>
+  <div class="form-card">
     <form action={formAction} method="POST" class="dynamic-form" id={formId}>
       {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
 
@@ -73,7 +74,7 @@ const {
       }
 
       <button type="submit" class="submit-btn">{submitText}</button>
-      <slot />
+      <!-- <slot /> -->
       <!-- Allows you to pass extra error fields inside -->
     </form>
   </div>
