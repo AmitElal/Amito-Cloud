@@ -25,6 +25,63 @@ const artPieces = Object.entries(images).map(([path, mod]) => {
 
   const ITEM_IMAGE_WIDTH = "15rem";
 
+  function createFrameLines(): HTMLDivElement {
+    const layer = document.createElement("div");
+    layer.style.position = "absolute";
+    layer.style.inset = "0";
+    layer.style.pointerEvents = "none";
+
+    const outerLine = document.createElement("div");
+    outerLine.style.position = "absolute";
+    outerLine.style.inset = "3px";
+    outerLine.style.border = "3px solid #caa04a";
+    outerLine.style.boxSizing = "border-box";
+
+    const innerLine = document.createElement("div");
+    innerLine.style.position = "absolute";
+    innerLine.style.inset = "9px";
+    innerLine.style.border = "1px solid #e6c375";
+    innerLine.style.boxSizing = "border-box";
+
+    layer.appendChild(outerLine);
+    layer.appendChild(innerLine);
+
+    return layer;
+  }
+
+  function createCornerDots(): HTMLDivElement {
+    const CORNER_SIZE = 6;
+    const CORNER_INSET = 1;
+
+    const layer = document.createElement("div");
+    layer.style.position = "absolute";
+    layer.style.inset = "0";
+    layer.style.pointerEvents = "none";
+
+    const positions: { top?: number; bottom?: number; left?: number; right?: number }[] = [
+      { top: CORNER_INSET, left: CORNER_INSET },
+      { top: CORNER_INSET, right: CORNER_INSET },
+      { bottom: CORNER_INSET, left: CORNER_INSET },
+      { bottom: CORNER_INSET, right: CORNER_INSET },
+    ];
+
+    positions.forEach((pos) => {
+      const dot = document.createElement("div");
+      dot.style.position = "absolute";
+      dot.style.width = `${CORNER_SIZE}px`;
+      dot.style.height = `${CORNER_SIZE}px`;
+      dot.style.borderRadius = "50%";
+      dot.style.backgroundColor = "#caa04a";
+      if (pos.top !== undefined) dot.style.top = `${pos.top}px`;
+      if (pos.bottom !== undefined) dot.style.bottom = `${pos.bottom}px`;
+      if (pos.left !== undefined) dot.style.left = `${pos.left}px`;
+      if (pos.right !== undefined) dot.style.right = `${pos.right}px`;
+      layer.appendChild(dot);
+    });
+
+    return layer;
+  }
+
   function layoutArtGadget(gadget: HTMLElement) {
     const wrappers = Array.from(
       gadget.querySelectorAll<HTMLElement>(".art-piece"),
@@ -71,20 +128,44 @@ const artPieces = Object.entries(images).map(([path, mod]) => {
       const wrapper = document.createElement("div");
       wrapper.className = "art-piece";
       wrapper.style.position = "absolute";
+      wrapper.style.display = "flex";
+      wrapper.style.flexDirection = "column";
+      wrapper.style.alignItems = "center";
+      wrapper.style.gap = "0.35rem";
       wrapper.style.width = ITEM_IMAGE_WIDTH;
+      wrapper.style.boxSizing = "border-box";
+      wrapper.style.borderRadius = "1px";
+      wrapper.style.padding = "0.9rem";
+      wrapper.style.backgroundColor = "#f6efe0";
+      wrapper.style.boxShadow = "0 8px 20px rgba(90, 62, 20, 0.35)";
+
+      const frameOverlay = createFrameLines();
+      const cornerDots = createCornerDots();
 
       const img = document.createElement("img");
       img.src = piece.src;
       img.alt = piece.name;
-      img.style.width = ITEM_IMAGE_WIDTH;
+      img.style.display = "block";
+      img.style.width = "100%";
       img.style.height = "auto";
+      img.style.objectFit = "contain";
+      img.style.position = "relative";
       imagesToLoad.push(img);
 
       const caption = document.createElement("p");
       caption.textContent = piece.name;
+      caption.style.width = "100%";
+      caption.style.margin = "0";
+      caption.style.fontSize = "0.65rem";
+      caption.style.textAlign = "center";
+      caption.style.color = "#6b4f22";
+      caption.style.boxSizing = "border-box";
+      caption.style.position = "relative";
 
       wrapper.appendChild(img);
       wrapper.appendChild(caption);
+      wrapper.appendChild(frameOverlay);
+      wrapper.appendChild(cornerDots);
       gadget.appendChild(wrapper);
     });
 
@@ -106,30 +187,6 @@ const artPieces = Object.entries(images).map(([path, mod]) => {
     height: 100%;
     min-height: 50rem;
     padding-bottom: 20rem;
-    box-sizing: border-box;
-  }
-
-  .art-piece {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.35rem;
-  }
-
-  .art-piece img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  }
-
-  .art-piece p {
-    width: 100%;
-    font-size: 0.65rem;
-    text-align: center;
-    margin: 0;
     box-sizing: border-box;
   }
 
