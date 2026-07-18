@@ -1,0 +1,141 @@
+---
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/Random art from my past/*",
+  { eager: true },
+);
+
+const artPieces = Object.entries(images).map(([path, mod]) => {
+  const filename = path.split("/").pop() ?? path;
+  const name = filename.replace(/\.[^./]+$/, "");
+  return { src: mod.default.src, name };
+});
+---
+
+<div class="art-gadget" data-art={JSON.stringify(artPieces)}></div>
+
+<script>
+  function shuffle<T>(items: T[]): T[] {
+    const copy = [...items];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  const ITEM_IMAGE_WIDTH = "15rem";
+
+  function layoutArtGadget(gadget: HTMLElement) {
+    const wrappers = Array.from(
+      gadget.querySelectorAll<HTMLElement>(".art-piece"),
+    );
+    const { width, height } = gadget.getBoundingClientRect();
+    const paddingBottom =
+      parseFloat(getComputedStyle(gadget).paddingBottom) || 0;
+    const spawnableHeight = Math.max(height - paddingBottom, 0);
+
+    wrappers.forEach((wrapper) => {
+      const maxX = Math.max(width - wrapper.offsetWidth, 0);
+      const maxY = Math.max(spawnableHeight - wrapper.offsetHeight, 0);
+      wrapper.style.left = `${Math.random() * maxX}px`;
+      wrapper.style.top = `${Math.random() * maxY}px`;
+    });
+  }
+
+  function loadImage(img: HTMLImageElement) {
+    return new Promise<void>((resolve) => {
+      if (img.complete) {
+        resolve();
+        return;
+      }
+      img.addEventListener("load", () => resolve(), { once: true });
+      img.addEventListener("error", () => resolve(), { once: true });
+    });
+  }
+
+  async function setUpArtGadget() {
+    const gadget = document.querySelector<HTMLElement>(".art-gadget");
+    if (!gadget) return;
+
+    const allArt = JSON.parse(gadget.dataset.art ?? "[]") as {
+      src: string;
+      name: string;
+    }[];
+
+    gadget.innerHTML = "";
+
+    const picked = shuffle(allArt).slice(0, 3);
+    const imagesToLoad: HTMLImageElement[] = [];
+
+    picked.forEach((piece) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "art-piece";
+      wrapper.style.position = "absolute";
+      wrapper.style.width = ITEM_IMAGE_WIDTH;
+
+      const img = document.createElement("img");
+      img.src = piece.src;
+      img.alt = piece.name;
+      img.style.width = ITEM_IMAGE_WIDTH;
+      img.style.height = "auto";
+      imagesToLoad.push(img);
+
+      const caption = document.createElement("p");
+      caption.textContent = piece.name;
+
+      wrapper.appendChild(img);
+      wrapper.appendChild(caption);
+      gadget.appendChild(wrapper);
+    });
+
+    await Promise.all(imagesToLoad.map(loadImage));
+
+    layoutArtGadget(gadget);
+
+    const resizeObserver = new ResizeObserver(() => layoutArtGadget(gadget));
+    resizeObserver.observe(gadget);
+  }
+
+  document.addEventListener("astro:page-load", setUpArtGadget);
+</script>
+
+<style>
+  .art-gadget {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 50rem;
+    padding-bottom: 20rem;
+    box-sizing: border-box;
+  }
+
+  .art-piece {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .art-piece img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .art-piece p {
+    width: 100%;
+    font-size: 0.65rem;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  @container (max-width: 650px) {
+    .art-gadget {
+      min-height: 40rem;
+    }
+  }
+</style>
